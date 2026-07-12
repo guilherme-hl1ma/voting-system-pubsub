@@ -1,6 +1,8 @@
 API_DIR := src/api
 FRONTEND_DIR := src/frontend
 
+.PHONY: install-frontend frontend-dev install-api api-dev
+
 # Frontend scripts
 install-frontend: $(FRONTEND_DIR)/package-lock.json
 	cd $(FRONTEND_DIR) && npm ci
@@ -8,7 +10,7 @@ install-frontend: $(FRONTEND_DIR)/package-lock.json
 $(FRONTEND_DIR)/package-lock.json: $(FRONTEND_DIR)/package.JSON
 	cd $(FRONTEND_DIR) && npm install
 
-frontend-dev:
+frontend-dev: install-frontend
 	cd $(FRONTEND_DIR) && npm run dev
 
 # API scripts

@@ -4,7 +4,7 @@ export const envSchema = {
   properties: {
     MONGO_URL: {
       type: "string",
-      default: "mongodb://root:root@localhost:27017/",
+      default: "mongodb://root:root@localhost:27017/voting?authSource=admin",
     },
   },
 };
