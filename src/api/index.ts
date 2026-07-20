@@ -4,7 +4,7 @@ import { envOptions } from "./schemas/env";
 import mongoConnector from "./plugins/mongodb";
 import repositoriesPlugin from "./plugins/repositories";
 import servicesPlugin from "./plugins/services";
-import { voteRoutes } from "./routes/vote";
+import { pollRoutes } from "./routes/poll";
 
 const fastify = Fastify({
   logger: true,
@@ -14,7 +14,7 @@ fastify.register(fastifyEnv, envOptions);
 fastify.register(mongoConnector);
 fastify.register(repositoriesPlugin);
 fastify.register(servicesPlugin);
-fastify.register(voteRoutes, { prefix: "/votes" });
+fastify.register(pollRoutes, { prefix: "/polls" });
 
 const start = async () => {
   try {

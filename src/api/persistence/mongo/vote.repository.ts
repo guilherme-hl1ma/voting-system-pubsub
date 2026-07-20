@@ -1,5 +1,6 @@
 import { Collection, Db } from "mongodb";
-import { Vote, VoteRepository } from "../../repositories/vote";
+import { VoteRepository } from "../../repositories/vote";
+import { Vote } from "../../schemas/vote";
 
 export class VoteMongoRepository implements VoteRepository {
   private readonly collection: Collection<Vote>;

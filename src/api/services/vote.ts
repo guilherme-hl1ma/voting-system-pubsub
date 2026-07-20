@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { Vote, VoteRepository } from "../repositories/vote";
-import { VoteCreateDto } from "../schemas/vote.dto";
+import { VoteRepository } from "../repositories/vote";
+import { VoteCreateDto } from "../dtos/vote";
 
 export class VoteService {
   constructor(
@@ -10,7 +10,12 @@ export class VoteService {
 
   async createVote(vote: VoteCreateDto) {
     try {
-      await this.repository.createVote({ ...vote, schemaVersion: 1 });
+      const timestamp = Date.now();
+      await this.repository.createVote({
+        ...vote,
+        schemaVersion: [this.fastify.VOTE_VERSION],
+        votedAt: timestamp,
+      });
     } catch (e) {
       this.fastify.log.error(`Error creating vote: ${e}`);
       throw e;

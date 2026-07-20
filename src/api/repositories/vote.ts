@@ -1,8 +1,4 @@
-export interface Vote {
-  title: string;
-  description: string;
-  schemaVersion: number;
-}
+import { Vote } from "../schemas/vote";
 
 export interface VoteRepository {
   createVote(vote: Vote): Promise<void>;
